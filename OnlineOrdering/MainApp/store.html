@@ -1,0 +1,132 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Online Ordering | Store</title>
+        <meta name="description" content="This is the description">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" />
+          <link rel="stylesheet" type="text/css" href="{% static 'css/checkout.css' %}" />
+        <script src="{% static 'js/store.js' %}" async></script>
+        <script type="text/javascript"src="{% static 'js/jQuery v3.2.1.js' %}"></script>
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    </head>
+    <body>
+      <form action="insert.php" method="post">
+        <header class="main-header">
+            <nav class="main-nav nav">
+                <ul>
+                    <li><a href="{% url 'app:index' %}">HOME</a></li>
+                    <li><a href="{% url 'app:store' %}">STORE</a></li> 
+                        <li><a href="{% url 'app:about' %}">ABOUT</a></li>
+                        <li><a href="{% url 'app:donations' %}">Donate Food</a></li>
+                 <li><a href="{% url 'app:membership' %}">Membership</a></li>
+                 <li><a href="{% url 'app:logout' %}">Log Out</a></li>
+                 <li><a>logged In as {{username}}</a></li>   
+                      
+                </ul>
+            </nav>
+            <h1 class="band-name band-name-large">Online Ordering</h1>
+        </header>
+        <section class="container content-section">
+            <h2 class="section-header">Welcome {{username}}</h2>
+            <h2 class="section-header">Menu</h2>
+            <div class="shop-items">
+                <div class="shop-item">
+                    <span class="shop-item-title">Red Sauce Pasta</span>
+                    <img class="shop-item-image" src="{%static 'Images/pasta.png' %}">    <!--Album 1-->
+                    <div class="shop-item-details">
+                        <span class="shop-item-price">Rs.120</span>
+                        <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
+                    </div>
+                </div>
+                <div class="shop-item">
+                    <span class="shop-item-title">Pav Bhaji</span>
+                    <img class="shop-item-image" src="{%static 'Images/pavbhaji.png' %}">   <!--Album 2-->
+                    <div class="shop-item-details">
+                        <span class="shop-item-price">Rs.80</span>
+                        <button class="btn btn-primary shop-item-button"type="button">ADD TO CART</button>
+                    </div>
+                </div>
+                <div class="shop-item">
+                    <span class="shop-item-title">Chocolate Loaded Cake</span>
+                    <img class="shop-item-image" src="{%static 'Images/cake.png' %}">    <!--Album 3-->
+                    <div class="shop-item-details">
+                        <span class="shop-item-price">Rs.550</span>
+                        <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
+                    </div>
+                </div>
+                <div class="shop-item">
+                    <span class="shop-item-title">Mc Aloo Tikki</span>
+                    <img class="shop-item-image" src="{%static 'Images/burger.png' %}">    <!--Album 4-->
+                    <div class="shop-item-details">
+                        <span class="shop-item-price">Rs.59</span>
+                        <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="container content-section">
+            <h2 class="section-header"></h2>
+            <div class="shop-items">
+                <div class="shop-item">
+                    <span class="shop-item-title">Cheese Loaded Pizza 12'</span>
+                    <img class="shop-item-image" src="{%static 'Images/pizza.png' %}">
+                    <div class="shop-item-details">
+                        <span class="shop-item-price">Rs.299</span>
+                        <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
+                    </div>
+                </div>
+                <div class="shop-item">
+                    <span class="shop-item-title">Latte</span>
+                    <img class="shop-item-image" src="{%static 'Images/Coffee.png' %}">
+                    <div class="shop-item-details">
+                        <span class="shop-item-price">Rs.79</span>
+                        <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="container content-section">
+            <h2 class="section-header">CART</h2>
+            <div class="cart-row">
+                <span class="cart-item cart-header cart-column">ITEM</span>
+                <span class="cart-price cart-header cart-column">PRICE</span>
+                <span class="cart-quantity cart-header cart-column">QUANTITY</span>
+            </div>
+            <div class="cart-items">
+            </div>
+            <div class="cart-total">
+                <strong class="cart-total-title">Total</strong>
+                <span class="cart-total-price" name="t" value="0">Rs.0</span>
+            </div>
+            <button class="btn btn-primary btn-purchase" type="button">PURCHASE</button>
+        </section>
+        <!--<footer class="main-footer">
+            <div class="container main-footer-container">
+                <h3 class="band-name">Online Ordering</h3>
+                <ul class="nav footer-nav">
+                    <li>
+                        <a href="https://www.youtube.com" target="_blank">
+                            <img src="Images/YouTube Logo.png">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.spotify.com" target="_blank">
+                            <img src="Images/Spotify Logo.png">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.facebook.com" target="_blank">
+                            <img src="Images/Facebook Logo.png">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </footer>-->
+
+      </form>
+    </body>
+</html>

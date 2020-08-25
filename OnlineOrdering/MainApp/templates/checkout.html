@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Check Out portal </title>
+        <link rel="stylesheet" href="checkout.css" />
+    </head>
+<body>
+  <form>
+<div class="checkout-panel">
+  <div class="panel-body">
+    <h2 class="title">Checkout here!</h2>
+
+    <div class="progress-bar">
+      <div class="step active"></div>
+      <div class="step active"></div>
+      <div class="step"></div>
+      <div class="step"></div>
+    </div>
+
+    <div class="payment-method">
+      <label for="card" class="method card">
+        <div class="card-logos">
+          <img src="https://designmodo.com/demo/checkout-panel/img/visa_logo.png"/>
+          <img src="https://designmodo.com/demo/checkout-panel/img/mastercard_logo.png"/>
+        </div>
+
+        <div class="radio-input">
+          <input id="card" type="radio" name="payment" value="0">
+          Pay Using credit card
+        </div>
+      </label>
+      <label for="paypal" class="method paypal">
+        <img src="https://cdn1.iconfinder.com/data/icons/marketplace-and-shipping-outline/64/COD_cash_on_delivery_shipping_payment_delivery-512.png"/>
+        <div class="radio-input">
+          <input id="paypal" type="radio" name="payment1" value="1" >
+          Cash On Delivery
+        </div>
+      </label>
+    </div>
+
+    </div>
+    <div class="input-fields">
+      <div class="column-1">
+        <label for="cardholder">Name</label>
+        <input type="text" id="cardholder" name="name"/>
+
+        <div class="small-inputs">
+          <div>
+            <label for="date">Valid date</label>
+            <input type="text" id="date" name="date"/>
+          </div>
+
+          <div>
+            <label for="verification">CVV / CVC *</label>
+            <input type="password" id="verification" name="cvv"/>
+          </div>
+        </div>
+
+      </div>
+      <div class="column-2">
+        <label for="cardnumber">Card Number</label>
+        <input type="password" id="cardnumber"name="cn"/>
+
+        <span class="info">* CVV or CVC is the card security code, unique three digits number on the back of your card separate from its number.</span>
+      </div>
+    </div>
+  </div>
+  <div class="panel-footer">
+    <button class="btn next-btn" onclick="radio(this.form)">PAY</button>
+    <br><br><br><br><br><br>
+    <div class="rate">
+    <input type="radio" id="star5" name="rate" value="5" />
+    <label for="star5" title="text">5 stars</label>
+    <input type="radio" id="star4" name="rate" value="4" />
+    <label for="star4" title="text">4 stars</label>
+    <input type="radio" id="star3" name="rate" value="3" />
+    <label for="star3" title="text">3 stars</label>
+    <input type="radio" id="star2" name="rate" value="2" />
+    <label for="star2" title="text">2 stars</label>
+    <input type="radio" id="star1" name="rate" value="1" />
+    <label for="star1" title="text">1 star</label>
+    </div>;
+  </form>
+  </div>
+</div>
+
+<script type="text/javascript">
+function radio(form)
+{
+  if(form.payment.checked==0)
+  {
+    al()
+  }
+  else {
+    check(form)
+  }
+}
+function check(form)
+{
+
+    if(form.name.value=="" || form.cvv.value=="" || form.cn.value == "" || form.date.value =="")
+    {alert("!! All Fields Are Mandatory !!")}
+    else {
+      al()
+    }}
+    function al()
+    {
+      alert('Thank You for Shopping')
+
+
+    }
+        </script>
+</body>
+</html>

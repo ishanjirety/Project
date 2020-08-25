@@ -1,0 +1,65 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/membership.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Raleway:300,400,700');
+        @import url("https://fonts.googleapis.com/css?family=Metal+Mania");
+    </style>
+    <title>Document</title>
+</head>
+<body>
+       <header class="main-header">
+            <nav class="nav main-nav">
+                <ul>
+                    <li><a href="{% url 'app:index' %}">HOME</a></li>
+             <li><a href="{% url 'app:store' %}">STORE</a></li> 
+                 <li><a href="{% url 'app:about' %}">ABOUT</a></li>
+                 <li><a href="{% url 'app:donations' %}">Donate Food</a></li>
+                 <li><a href="{% url 'app:membership' %}">Membership</a></li>
+                 <li><a href="{% url 'app:logout' %}">Log Out</a></li>
+                 <li><a>logged In as: {{username}}</a></li>                  
+                </ul>
+            </nav>
+            <h1 class="band-name band-name-large">Online Ordering</h1>
+        </header>
+    <form action="{% url 'app:membership_reg'%}" method="POST">
+    <div class="container group">
+        <div class="grid-1-5">
+            <h2>Basic</h2>
+            <h3><span class="uppercase">Free</span></h3>
+            <p>No Discount</p>
+            <p>3 Free Delivery Monthly</p>
+            <input type="submit" value="Baisc" name = "membership" class="button"></input>
+        </div>
+    </form>
+    <form action="{% url 'app:membership_reg'%}" method="POST">
+        <div class="grid-1-5">
+            <h2>Gold</h2>
+            <h3><sup>Rs.</sup>1350<span class="small">/mo</span></h3>
+            <p>Unlimited Free Delivery</p>
+            <p>Per Order Credit Points</p>
+            <p>5% Discount On Every Order</p>
+            <input type="submit" value="Gold" name = "membership" class="button"></input>   
+        </div>
+    </form>
+    <form action="{% url 'app:membership_reg'%}" method="POST">
+        <div class="grid-1-5">
+            <h2>Platinum</h2>
+            <h3><sup>Rs.</sup>5000<span class="small">/mo</span></h3>
+            <p>Unlimited Free Delivery</p>
+            <p>Per Order Credit Points</p>
+            <p>30% Discount On Every Order</p>
+            <p>Additional Cupons</p>
+            <p>Discount On premium Club Bookings</p>
+            <input type="submit" value="Platinum" name = "membership" class="button"></input>   
+
+        </div> 
+    </form>  
+    </div>
+</body>
+</html>

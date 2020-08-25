@@ -1,0 +1,82 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/membership.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Raleway:300,400,700');
+        @import url("https://fonts.googleapis.com/css?family=Metal+Mania");
+    </style>
+    <title>Document</title>
+</head>
+<body>
+       <header class="main-header">
+            <nav class="nav main-nav">
+                <ul>
+                    <li><a href="{% url 'app:index' %}">HOME</a></li>
+             <li><a href="{% url 'app:store' %}">STORE</a></li> 
+                 <li><a href="{% url 'app:about' %}">ABOUT</a></li>
+                 <li><a href="{%url 'app:donations'%}">Donate Food</a></li>
+                 <li><a href="{% url 'app:membership' %}">Membership</a></li>
+                 <li><a href="{% url 'app:logout' %}">Log Out</a></li>
+                 <li><a>logged In as: {{username}}</a></li>                  
+                </ul>
+            </nav>
+            <h1 class="band-name band-name-large">Online Ordering</h1>
+        </header>
+    <form action="{% url 'app:donations'%}" method="POST">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputEmail4">Email</label>
+              <input type="email" class="form-control" id="inputEmail4" name="inputEmail4" placeholder="Email" required="required"> 
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputPassword4">Full Name</label>
+              <input type="text" class="form-control" id="Name" name="Name" placeholder="Full Name"  required="required">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputAddress">Pick up Address</label>
+            <input type="text" class="form-control" id="inputAddress" name="inputAddress" placeholder="1234 Main St"  required="required">
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputCity">City</label>
+              <input type="text" class="form-control" id="inputCity" name="inputCity"  required="required">
+            </div>
+            <div class="form-group col-md-2">
+              <label for="inputZip">Zip</label>
+              <input type="text" class="form-control" id="inputZip" name="inputZip" required="required">
+            </div>
+            <div class="form-group col-md-2">
+                <label for="inputZip">Weight</label>
+                <input type="text" class="form-control" id="wt" name="wt"  required="required">
+              </div>
+          </div>
+        <br>
+          <input type="submit" class="btn btn-primary" style="align-self:center;" value="Get It Picked"></input>
+    </form>
+    {% if flag > 0 %}
+    <br><br>
+    <div>
+        <div class="alert alert-success" role="alert">
+            <h4 class="alert-heading">Thank you</h4>
+            <p>for your great generosity! We, greatly appreciate that you choose to donate insted of wasting this will suerly make someones day,thank you again!</p>
+            <hr>
+            <p class="mb-0">Our Delivery Man Will Soon Come To Pick!!.</p>
+          </div>
+    </div>
+    {% endif %}
+</body>
+</html>

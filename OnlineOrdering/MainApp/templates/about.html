@@ -1,0 +1,35 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Online Ordering | About</title>
+        <meta name="description" content="This is the description">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" />
+    </head>
+    <body>
+        <header class="main-header">
+            <nav class="nav main-nav">
+                <ul>
+                    <li><a href="{% url 'app:index' %}">HOME</a></li>
+             <li><a href="{% url 'app:store' %}">STORE</a></li> 
+                 <li><a href="{% url 'app:about' %}">ABOUT</a></li>
+                 <li><a href="{% url 'app:donations' %}">Donate Food</a></li>
+                 <li><a href="{% url 'app:membership' %}">Membership</a></li>
+                 <li><a href="{% url 'app:logout' %}">Log Out</a></li>
+                 <li><a>logged In as {{username}}</a></li>   
+                </ul>
+            </nav>
+            <h1 class="band-name band-name-large">Online Ordering</h1>
+        </header>
+
+        <section class="content-section container">
+            <h2 class="section-header">ABOUT</h2>
+            <img class="about-band-image" src="{% static 'Images/Band Members.png'%}">
+            <p>The main objective of online food ordering system is to automate the existing manual system with the help of advance computerized software so, that valuable data can be stored for longer period with easy accessing and manipulation of the same.
+              Any user can access the Page. User can surf the food items , Cart and Cash on Delivery payment options are available to user.
+In Online Food Ordering System User can add or remove food items from cart, edit/delete food items, Enable/Disable the food items according to season and availability. Admin have authority to view order details and Fetch database with a unique ID. The payment transaction and user details are also viewable to admin.
+</p><br><br>
+            <p>Created By:</p><p>Ayush Panjwani BCA </p><p>Aditya Mishra BCA </p>
+        </section>
+    </body>
+</html>

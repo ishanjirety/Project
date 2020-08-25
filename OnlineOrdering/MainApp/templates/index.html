@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Online Food Ordering System</title>
+        <meta name="description" content="This is the description">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" />
+        <style>
+            @import url('https://fonts.googleapis.com/css?family=Raleway:300,400,700');
+            @import url("https://fonts.googleapis.com/css?family=Metal+Mania");
+        </style>
+    </head>
+    <body>
+        <form action="insert.php" method="post">
+        <header class="main-header">
+            <nav class="nav main-nav">
+                <ul>
+                    <li><a href="{% url 'app:index' %}">HOME</a></li>
+             <li><a href="{% url 'app:store' %}">STORE</a></li> 
+                 <li><a href="{% url 'app:about' %}">ABOUT</a></li>
+                 <li><a href="{% url 'app:donations' %}">Donate Food</a></li>
+                 <li><a href="{% url 'app:membership' %}">Membership</a></li>
+                 <li><a href="{% url 'app:logout' %}">Log Out</a></li>
+               
+                </ul>
+            </nav>
+            <h1 class="band-name band-name-large">Online Ordering</h1>
+        </header>
+        <section class="content-section container">
+            <h2 class="section-header">Welcome {{username}}</h2>
+            <h2 class="section-header">Mega Offer For Seat Bookings</h2>
+            <div>
+                <div class="tour-row">
+                    <span class="tour-item tour-date">50% Off</span>
+                    <span class="tour-item tour-city">Indore, MP</span>
+                    <span class="tour-item tour-arena">Radisson Blu</span>
+                    <button type="button" class="tour-item tour-btn btn btn-primary" onclick="prompt()">Book Now</button>
+                </div>
+                <div class="tour-row">
+                    <span class="tour-item tour-date">30% Off</span>
+                    <span class="tour-item tour-city">Indore, MP</span>
+                    <span class="tour-item tour-arena">Sayaji</span>
+                    <button type="button" class="tour-item tour-btn btn btn-primary" onclick="prompt()">Book Now</button>
+                </div>
+                <div class="tour-row">
+                    <span class="tour-item tour-date">35% Off</span>
+                    <span class="tour-item tour-city">Indore, MP</span>
+                    <span class="tour-item tour-arena">Marriot</span>
+                    <button type="button" class="tour-item tour-btn btn btn-primary" onclick="prompt()">Book Now</button>
+                </div>
+                <div class="tour-row">
+                    <span class="tour-item tour-date">75% Off</span>
+                    <span class="tour-item tour-city">Indore, MP</span>
+                    <span class="tour-item tour-arena">The Grand Bhagwati</span>
+                    <button type="button" class="tour-item tour-btn btn btn-primary" onclick="prompt()">Book Now</button>
+                </div>
+                <div class="tour-row">
+                    <span class="tour-item tour-date">50% Off</span>
+                    <span class="tour-item tour-city">Indore, MP</span>
+                    <span class="tour-item tour-arena">Best Western O2</span>
+                    <button type="button" class="tour-item tour-btn btn btn-primary" onclick="prompt()">Book Now</button>
+                </div>
+                <div class="tour-row">
+                    <span class="tour-item tour-date">50% Off</span>
+                    <span class="tour-item tour-city">Indore, MP</span>
+                    <span class="tour-item tour-arena">Amarvilas</span>
+                    <button type="button" class="tour-item tour-btn btn btn-primary" onclick="prompt()">Book Now</button>
+                </div>
+            </div>
+        </section>
+
+      <script>
+        function prompt()
+        {
+          alert('Thank You!!')
+        }
+      </script>
+    </form>
+    </body>
+</html>

@@ -1,0 +1,73 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Online Ordering | Store</title>
+        <meta name="description" content="This is the description">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" />
+          <link rel="stylesheet" type="text/css" href="{% static 'css/checkout.css' %}" />
+        <script src="{% static 'js/store.js' %}" async></script>
+        <script type="text/javascript"src="{% static 'js/jQuery v3.2.1.js' %}"></script>
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <header class="main-header">
+            <nav class="main-nav nav">
+                <ul>
+                    <li><a href="{% url 'app:index' %}">HOME</a></li>
+                    <li><a href="{% url 'app:store' %}">STORE</a></li> 
+                        <li><a href="{% url 'app:about' %}">ABOUT</a></li>
+                        <li><a href="{% url 'app:donations' %}">Donate Food</a></li>
+                 <li><a href="{% url 'app:membership' %}">Membership</a></li>
+                 <li><a href="{% url 'app:logout' %}">Log Out</a></li>
+                 <li><a>logged In as {{username}}</a></li>   
+                      
+                </ul>
+            </nav>
+            <h1 class="band-name band-name-large">Online Ordering</h1>
+        </header>
+        <div class="container">
+            <table id="cart" class="table table-hover table-condensed">
+                            <thead>
+                                <tr>
+                                    <th style="width:50%">Product</th>
+                                    <th style="width:10%">Price</th>
+                                    <th style="width:8%">Quantity</th>
+                                    <th style="width:10%"></th>
+                                </tr>
+                            </thead>
+                        <!------------------------------->
+                        {% for menu in menu %}
+                            <tbody>
+                                <tr>
+                                    <td data-th="Product">
+                                        <div class="row">
+                                            <div class="col-sm-2 hidden-xs"><img src="{{menu.itemImage}}" alt="..." class="img-responsive"/></div>
+                                            <div class="col-sm-10">
+                                                <h4 class="nomargin">{{menu.itemName}}</h4>
+                                                <p>{{menu.itemDescription}}</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td data-th="Price">{{menu.itemPrice}}</td>
+                                    <td data-th="Quantity">
+                                        <input type="number" class="form-control text-center" value="1">
+                                    </td>
+                             </tr>
+                            </tbody>
+                            {% endfor %}
+                            <!------------------------------->
+                             <!-- checkout buttons not to loop--><tfoot>
+                                <tr>
+                                    <td><a href="#" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
+                                    <td colspan="2" class="hidden-xs"></td>
+                                    <td><a href="#" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></a></td>
+                                </tr>
+                            </tfoot> <!-- checkout buttons not to loop-->
+                        </table>
+        </div>
+        </body>
+</html>
