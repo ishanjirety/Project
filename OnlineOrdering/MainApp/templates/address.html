@@ -1,58 +1,117 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" />
+    <script src="{% static 'js/store.js' %}" async></script>
+    <script type="text/javascript"src="{% static 'js/jQuery v3.2.1.js' %}"></script>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <title>address</title>
 </head>
 <body>
-    
-<form>
+    <header class="main-header">
+        <nav class="main-nav nav">
+            <ul>
+                <li><a href="{% url 'app:index' %}">HOME</a></li>
+                <li><a href="{% url 'app:store' %}">STORE</a></li> 
+                    <li><a href="{% url 'app:about' %}">ABOUT</a></li>
+                    <li><a href="{% url 'app:donations' %}">Donate Food</a></li>
+             <li><a href="{% url 'app:membership' %}">Membership</a></li>
+             <li><a href="{% url 'app:logout' %}">Log Out</a></li>
+             <li><a>logged In as {{username}}</a></li>   
+                  
+            </ul>
+        </nav>
+        <h1 class="band-name band-name-large">Online Ordering</h1>
+    </header>
+<form action="{% url 'app:checkout' %}" method="POST">
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="inputEmail4">Email</label>
-        <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+        <input type="email" class="form-control" id="email" name="email" placeholder="Email"></input>
       </div>
       <div class="form-group col-md-6">
-        <label for="inputPassword4">Password</label>
-        <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+        <label for="inputPassword4">Name</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Password"></input>
       </div>
     </div>
-    <div class="form-group">
+    <div class="form-group col-md-6">
       <label for="inputAddress">Address</label>
-      <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+      <input type="text" class="form-control" id="address" name="address" placeholder="1234 Main St"></input>
     </div>
-    <div class="form-group">
+    <div class="form-group col-md-6">
       <label for="inputAddress2">Address 2</label>
-      <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+      <input type="text" class="form-control" id="address2" name="address2" placeholder="Apartment, studio, or floor"></input>
     </div>
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="inputCity">City</label>
-        <input type="text" class="form-control" id="inputCity">
+        <input type="text" class="form-control" id="City" name="City" ></input>
       </div>
       <div class="form-group col-md-4">
         <label for="inputState">State</label>
-        <select id="inputState" class="form-control">
-          <option selected>Choose...</option>
-          <option>...</option>
+        <select id="state" name= "state" class="form-control">
+            <option value="None">Choose</option>
+            <option value="Andhra Pradesh">Andhra Pradesh</option>
+            <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+            <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+            <option value="Assam">Assam</option>
+            <option value="Bihar">Bihar</option>
+            <option value="Chandigarh">Chandigarh</option>
+            <option value="Chhattisgarh">Chhattisgarh</option>
+            <option value="Dadar and Nagar Haveli">Dadar and Nagar Haveli</option>
+            <option value="Daman and Diu">Daman and Diu</option>
+            <option value="Delhi">Delhi</option>
+            <option value="Lakshadweep">Lakshadweep</option>
+            <option value="Puducherry">Puducherry</option>
+            <option value="Goa">Goa</option>
+            <option value="Gujarat">Gujarat</option>
+            <option value="Haryana">Haryana</option>
+            <option value="Himachal Pradesh">Himachal Pradesh</option>
+            <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+            <option value="Jharkhand">Jharkhand</option>
+            <option value="Karnataka">Karnataka</option>
+            <option value="Kerala">Kerala</option>
+            <option value="Madhya Pradesh">Madhya Pradesh</option>
+            <option value="Maharashtra">Maharashtra</option>
+            <option value="Manipur">Manipur</option>
+            <option value="Meghalaya">Meghalaya</option>
+            <option value="Mizoram">Mizoram</option>
+            <option value="Nagaland">Nagaland</option>
+            <option value="Odisha">Odisha</option>
+            <option value="Punjab">Punjab</option>
+            <option value="Rajasthan">Rajasthan</option>
+            <option value="Sikkim">Sikkim</option>
+            <option value="Tamil Nadu">Tamil Nadu</option>
+            <option value="Telangana">Telangana</option>
+            <option value="Tripura">Tripura</option>
+            <option value="Uttar Pradesh">Uttar Pradesh</option>
+            <option value="Uttarakhand">Uttarakhand</option>
+            <option value="West Bengal">West Bengal</option>
         </select>
       </div>
       <div class="form-group col-md-2">
         <label for="inputZip">Zip</label>
-        <input type="text" class="form-control" id="inputZip">
+        <input type="text" class="form-control" id="zip" name="zip"></input>
       </div>
-    </div>
-    <div class="form-group">
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="gridCheck">
-        <label class="form-check-label" for="gridCheck">
-          Check me out
-        </label>
+      <div class="form-group col-md-6">
+        <label for="inputMob">Mobile</label>
+        <input type="text" class="form-control" id="mobile" name="mobile"></input>
       </div>
+      <div class="form-group col-md-4">
+        <h1><label for="Amount"><strong>Total Amount</label></h1>
+        <input type="text" class="form-control" value="{{amt}}" readonly="readonly"></input>
+      </div>
+      <br><br>
+    <div class="form-group col-md-5">
+    <input type="submit" class="btn btn-primary" value="Proceed To Pay"></input>
     </div>
-    <button type="submit" class="btn btn-primary">Sign in</button>
   </form>
 </body>
 </html>

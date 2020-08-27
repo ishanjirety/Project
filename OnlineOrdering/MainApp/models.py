@@ -34,9 +34,14 @@ class membership(models.Model):
 
 class order(models.Model):
     order_id=models.IntegerField(primary_key=True)
-    username=models.CharField(max_length=20)
-    date=models.CharField(max_length=10)
-    mobile=models.CharField(max_length=10)
-    address=models.CharField(max_length=40)
-    total=models.CharField(max_length=10)
+    email=models.CharField(max_length=40,default="")
+    username=models.CharField(max_length=20,default="")
+    address=models.CharField(max_length=30,default="")
+    address2=models.CharField(max_length=30,default="")
+    city=models.CharField(max_length=10,default="")
+    state=models.CharField(max_length=20,default="")
+    postalcode=models.CharField(max_length=20,default="")
+    date=models.CharField(max_length=10,default="")
+    mobile=models.CharField(max_length=13,default="")
+    total=models.CharField(max_length=10,default="")
     

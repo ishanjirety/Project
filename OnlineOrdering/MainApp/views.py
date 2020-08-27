@@ -144,13 +144,23 @@ def placeorder(request):
           return render(request, 'login.html')
      else:
           amount=request.POST.get('total')
-          return render(request,'checkout.html',{'amt':amount})
+          request.session['total']=amount
+          return render(request,'address.html',{'amt':amount})
 
-def checkout():
-     if request.method=="GET":
-          return render(request,'checkout.html')
-     else:
+def checkout(request):
           if request.session.get('loggedin') != "loggedin":
                return render(request, 'login.html')
           else:
-               return render(request,'checkout.html')
+               if request.method=="POST":
+                    email=request.POST.get('email')
+                    print(email)
+                    name=request.POST.get('name')
+                    address=request.POST.get('address')
+                    address2=request.POST.get('address2')
+                    city=request.POST.get('City')
+                    state=request.POST.get('state')
+                    postal_code=request.POST.get('zip')
+                    mobile=request.POST.get('mobile')
+                    o=models.order(email=email,username=name,address=address,address2=address2,city=city,state=state,postalcode=postal_code,date=datetime.date.today(),mobile=mobile)
+                    o.save()
+                    return render(request,'checkout.html')
