@@ -31,3 +31,12 @@ class membership(models.Model):
      username=models.CharField(max_length=30)
      date=models.CharField(max_length=10)
      typ=models.CharField(max_length=20)
+
+class order(models.Model):
+    order_id=models.IntegerField(primary_key=True)
+    username=models.CharField(max_length=20)
+    date=models.CharField(max_length=10)
+    mobile=models.CharField(max_length=10)
+    address=models.CharField(max_length=40)
+    total=models.CharField(max_length=10)
+    

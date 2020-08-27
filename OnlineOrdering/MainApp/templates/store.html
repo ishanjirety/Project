@@ -5,7 +5,6 @@
         <title>Online Ordering | Store</title>
         <meta name="description" content="This is the description">
         <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" />
-          <link rel="stylesheet" type="text/css" href="{% static 'css/checkout.css' %}" />
         <script src="{% static 'js/store.js' %}" async></script>
         <script type="text/javascript"src="{% static 'js/jQuery v3.2.1.js' %}"></script>
         <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -35,17 +34,18 @@
                                 <tr>
                                     <th style="width:50%">Product</th>
                                     <th style="width:10%">Price</th>
-                                    <th style="width:8%">Quantity</th>
                                     <th style="width:10%"></th>
                                 </tr>
                             </thead>
                         <!------------------------------->
+                        
                         {% for menu in menu %}
+                        <div id="d">
                             <tbody>
                                 <tr>
                                     <td data-th="Product">
                                         <div class="row">
-                                            <div class="col-sm-2 hidden-xs"><img src="{{menu.itemImage}}" alt="..." class="img-responsive"/></div>
+                                            <div class="col-sm-2 hidden-xs"><img src="{{menu.itemImage}}" class="img-responsive"/></div>
                                             <div class="col-sm-10">
                                                 <h4 class="nomargin">{{menu.itemName}}</h4>
                                                 <p>{{menu.itemDescription}}</p>
@@ -53,21 +53,43 @@
                                         </div>
                                     </td>
                                     <td data-th="Price">{{menu.itemPrice}}</td>
-                                    <td data-th="Quantity">
-                                        <input type="number" class="form-control text-center" value="1">
-                                    </td>
+                                    <td><button href="#" class="btn btn-success btn-block" value="{{menu.itemPrice}}" id='t' onclick="addition(this.value)">Add</button></td>
+                                    <td><button href="#" class="btn btn-success btn-block" style="background-color: rgb(238, 69, 69);" value="{{menu.itemPrice}}" id='t' onclick="removeThis(this.value)">Remove</button></td>
                              </tr>
                             </tbody>
+                        </div>
                             {% endfor %}
                             <!------------------------------->
-                             <!-- checkout buttons not to loop--><tfoot>
+                             <!-- checkout buttons not to loop-->
+                             <form action="{% url 'app:placeorder' %}" method="POST">
+                             <tfoot>
                                 <tr>
-                                    <td><a href="#" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
                                     <td colspan="2" class="hidden-xs"></td>
-                                    <td><a href="#" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></a></td>
-                                </tr>
+                                <td class="hidden-xs text-center" id="to" name="to"><strong></strong></td>
+                                    <input type="hidden" name="total" id="total"/>
+                                    <td><input type="submit" class="btn btn-success btn-block" value="Checkout"></input></td></tr>
                             </tfoot> <!-- checkout buttons not to loop-->
+                        </form>
                         </table>
-        </div>
+                    </div>
+                    <Script>
+                        a=0
+                        function addition(value){
+                            a=a+parseInt(value)
+                            //console.log(a)
+                            window.document.getElementById('total').value=a
+                            console.log(window.document.getElementById('total').value)
+                            window.document.getElementById('to').innerHTML="Total Rs." + a
+                        }
+                        function removeThis(value){
+                            if ((a !== 0) && (a >= value)){
+                            a=a-parseInt(value)
+                            //console.log(a)
+                            window.document.getElementById('total').value=a
+                            console.log(window.document.getElementById('total').value)
+                            window.document.getElementById('to').innerHTML="Total Rs." + a
+                            }
+                        }
+                    </Script>
         </body>
 </html>

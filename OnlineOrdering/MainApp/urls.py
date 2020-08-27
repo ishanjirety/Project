@@ -16,4 +16,7 @@ urlpatterns = [
     path('membershipreg', views.membership_reg, name='membership_reg'),
     path('donations', views.donations, name='donations'),
     path('logout', views.logout, name='logout'),
+    path('placeorder', views.placeorder, name='placeorder'),
+    path('checkout',views.checkout,name="checkout"),
+    
 ]
