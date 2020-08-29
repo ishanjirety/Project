@@ -18,5 +18,7 @@ urlpatterns = [
     path('logout', views.logout, name='logout'),
     path('placeorder', views.placeorder, name='placeorder'),
     path('location',views.checkout,name="address"),
-    
+    path('ForgotPassword',views.forgot,name="forgot"),
+    path('val',views.val,name="val"),
+    path('validated',views.val2,name="val2"),
 ]

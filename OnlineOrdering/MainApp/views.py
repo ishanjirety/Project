@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.core.exceptions import PermissionDenied
+import hashlib
 from . import models 
 import datetime
 
@@ -12,6 +13,7 @@ def index(request):
      else:
           context={ 
                "username":request.session.get('user_id'),
+               "type" : request.session.get('memType'),
                }
           return render(request, 'index.html', context)
                     
@@ -21,7 +23,8 @@ def store(request):
      else:
           context={ 
              "username":request.session.get('user_id'),
-             "menu":models.items.objects.all()
+             "menu":models.items.objects.all(),
+             "type" : request.session.get('memType'),
                }
           return render(request, 'store.html', context)
      
@@ -31,6 +34,7 @@ def about(request):
      else:
           context={ 
                "username":request.session.get('user_id'),
+               "type" : request.session.get('memType'),
                }
           return render(request, 'about.html', context)
 
@@ -56,9 +60,16 @@ def reg(request):
      if request.method=='POST':
           username=request.POST.get('username')
           password=request.POST.get('password')
+
+          ###################################################
+          passwordEnc=hashlib.md5(password.encode()).hexdigest()  #one Way Encryption
+          print(passwordEnc)  
+          ####################################################
+
           mobile=request.POST.get('mobile')
-          secQue=request.POST.get('secQue')
-          u=models.login(username=username,password=password,mobile=mobile,secQue=secQue)
+          secQue=request.POST.get('question')
+          ans=request.POST.get('ans')
+          u=models.login(username=username,password=passwordEnc,mobile=mobile,secQue=secQue,ans=ans)
           u.save()
           return render(request, 'login.html', {})     #passing flag to login to show success full reg msg
      else:
@@ -67,14 +78,22 @@ def reg(request):
 def loginValidation(request):
      username=request.POST.get('username')
      password=request.POST.get('password')
+     #####################################################
+     passwordEnc=hashlib.md5(password.encode()).hexdigest()      #input Password Conversion To Check
+     #####################################################
      try:
-          log=models.login.objects.get(username=username,password=password)
+          log=models.login.objects.get(username=username,password=passwordEnc)
+          fet=models.login.objects.filter(password=passwordEnc,username=username)
+          for fet in fet:
+               memType=fet.membership_type
+          request.session['memType']=memType
           validated=True
           context = {
              "username": username,
+             "type":memType,
                  }
           request.session['user_id']=username
-          request.session['pass']=password
+          request.session['pass']=passwordEnc
           request.session['loggedin']="loggedin"
           return render(request, 'index.html', context)
      except models.login.DoesNotExist:
@@ -89,6 +108,7 @@ def membership(request):
      else:
           context = {
              "username": request.session.get('user_id'),
+             "type" : request.session.get('memType'),
                  }
           return render(request,'membership.html',context)
 
@@ -99,7 +119,6 @@ def membership_reg(request):
           if request.method=="POST":
                username=request.session.get('user_id')
                password=request.session.get('pass')
-               print(username)
                membership_type=request.POST.get('membership')
                membership_reg=models.membership(username=username,typ=membership_type,date=datetime.date.today())
                membership_ins_inLogin=models.login.objects.filter(username=username,password=password).update(membership_type=membership_type)
@@ -127,6 +146,7 @@ def donations(request):
                flag=1
                context={
                     "flag":flag,
+                    "type" : request.session.get('memType'),
                }
                return render(request,'donations.html',context)
 def logout(request):
@@ -164,3 +184,40 @@ def checkout(request):
                     o=models.order(email=email,username=name,address=address,address2=address2,city=city,state=state,postalcode=postal_code,date=datetime.date.today(),mobile=mobile)
                     o.save()
                     return render(request,'checkout.html')
+def forgot(request):
+      if request.session.get('loggedin') != "loggedin":
+               if request.method=="POST":
+                         mobile=request.POST.get('mob')
+                         print(mobile)
+                         try:
+                              log=models.login.objects.get(mobile=mobile)
+                              log1=models.login.objects.filter(mobile=mobile)
+                              request.session['mob1']=mobile
+                              for log in log1:
+                                   question=log.secQue
+                              return render(request,"forgot.html",{"found":"found","question":question})
+                         except models.login.DoesNotExist:
+                              return render(request,"forgot.html",{"found":"Notfound"})
+               else:
+                    return render(request,"forgot.html",{"found" : "Notfound"})
+def val(request):
+     if request.session.get('loggedin') != "loggedin":
+          if request.method=="POST":
+               ans=request.POST.get('ans')
+               try:
+                    verify=models.login.objects.filter(mobile=request.session.get('mob1'),ans=ans)
+                    return render(request, "forgot.html",{"found":"true"})
+               except models.login.DoesNotExist:
+                    return render(request,"forgot.html")  
+
+def val2(request):
+          if request.session.get('loggedin') != "loggedin":
+                if request.method=="POST":
+                    newpass=request.POST.get('password')
+                    #####################################
+                    passwordEnc=hashlib.md5(newpass.encode()).hexdigest()  #one Way Encryption
+                    print(passwordEnc)  
+                    #####################################
+                    change=models.login()
+                    change=models.login.objects.filter(mobile=request.session.get('mob1')).update(password=passwordEnc)
+                    return render(request,"login.html")

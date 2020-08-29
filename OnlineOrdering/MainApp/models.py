@@ -3,8 +3,9 @@ from django.db import models
 class login(models.Model):
     login_id=models.IntegerField(primary_key=True)
     username=models.CharField(max_length=30)
-    password=models.CharField(max_length=30)
-    secQue=models.CharField(max_length=30)
+    password=models.CharField(max_length=80)
+    secQue=models.CharField(max_length=30,default="")
+    ans=models.CharField(max_length=30,default="")
     mobile=models.CharField(max_length=30,default="")
     membership_type=models.CharField(max_length=10,default="None")
 

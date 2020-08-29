@@ -21,12 +21,23 @@
                  <li><a href="{% url 'app:donations' %}">Donate Food</a></li>
                  <li><a href="{% url 'app:membership' %}">Membership</a></li>
                  <li><a href="{% url 'app:logout' %}">Log Out</a></li>
-               
                 </ul>
             </nav>
             <h1 class="band-name band-name-large">Online Ordering</h1>
         </header>
+            {% if type == "Basic" %}
+            <hr style="background: linear-gradient(to right,black,grey);
+            height: 10px;">
+            {% elif type == "Gold" %}
+            <hr style="background: linear-gradient(to right, rgb(190, 146, 0), yellow);
+            height: 10px;">
+            {% elif type == "Platinum" %}
+            <hr style="background: linear-gradient(to right,lightgrey, darkgrey);
+            height: 10px;">
+            {% endif %}
+
         <section class="content-section container">
+            
             <h2 class="section-header">Welcome {{username}}</h2>
             <h2 class="section-header">Mega Offer For Seat Bookings</h2>
             <div>
