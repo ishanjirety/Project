@@ -9,6 +9,30 @@
             @import url('https://fonts.googleapis.com/css?family=Raleway:300,400,700');
             @import url("https://fonts.googleapis.com/css?family=Metal+Mania");
         </style>
+        <style>  
+            .aut{ 
+                width:auto; 
+                text-align:center; 
+                padding:20px; 
+            } 
+            .image { 
+                max-width:100%; 
+                        height:auto; 
+            } 
+        </style>  
+        <style>
+            .centered {
+                position: absolute;
+                top: 65%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+            .bottom-right {
+            position: absolute;
+            bottom:110px;
+            right: 430px;
+            }
+        </style>
     </head>
     <body>
         <form action="insert.php" method="post">
@@ -26,19 +50,31 @@
             <h1 class="band-name band-name-large">Online Ordering</h1>
         </header>
             {% if type == "Basic" %}
-            <hr style="background: linear-gradient(to right,black,grey);
-            height: 10px;">
+            <div class="aut">
+                <p class="image"><img src="{% static 'Images/basic.jpeg'%}"></p>
+                <div class="centered"><h2>Welcome</h2></div>
+                <div class="bottom-right" style="bottom:100px;"><h2>{{username}}</h2></div>
+            </div>
+
             {% elif type == "Gold" %}
-            <hr style="background: linear-gradient(to right, rgb(190, 146, 0), yellow);
-            height: 10px;">
+            <div class="aut">
+                <p class="image"><img src="{% static 'Images/gold.jpeg'%}"></p>
+                <div class="centered"><h1>Welcome</h1></div>
+                <div class="bottom-right"><h2>{{username}}</h2></div>
+            </div>
+
+
             {% elif type == "Platinum" %}
-            <hr style="background: linear-gradient(to right,lightgrey, darkgrey);
-            height: 10px;">
+            <div class="aut">
+                <p class="image"><img src="{% static 'Images/platinum.jpeg'%}"></p>
+                <div class="centered"><h2>Welcome</h2></div>
+                <div class="bottom-right" style="bottom:100px;"><h2>{{username}}</h2></div>
+            </div>
             {% endif %}
 
         <section class="content-section container">
             
-            <h2 class="section-header">Welcome {{username}}</h2>
+            
             <h2 class="section-header">Mega Offer For Seat Bookings</h2>
             <div>
                 <div class="tour-row">

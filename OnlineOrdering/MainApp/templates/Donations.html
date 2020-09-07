@@ -18,6 +18,17 @@
         @import url('https://fonts.googleapis.com/css?family=Raleway:300,400,700');
         @import url("https://fonts.googleapis.com/css?family=Metal+Mania");
     </style>
+     <style>  
+      .aut{ 
+          width:auto; 
+          text-align:left; 
+      } 
+      .image { 
+          max-width:100%; 
+          height:auto; 
+          border: 5px solid black;
+      } 
+  </style> 
     <title>Document</title>
 </head>
 <body>
@@ -47,6 +58,9 @@
             height: 10px;">
             {% endif %}
           </div>
+          <div class="aut">
+            <p class="image"><img src="{% static 'Images/donationsBrief.jpg'%}"></p>
+        </div>
           <section>
     <form action="{% url 'app:donations'%}" method="POST">
         <div class="form-row">
